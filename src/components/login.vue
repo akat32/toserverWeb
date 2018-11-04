@@ -2,7 +2,7 @@
   <div>
     <div class="non">
       <div class = "Logo"></div>
-      <div class = "index">!조성운은 살아있다</div>
+      <div class = "index">불법 스포트도박 사이트 URL</div>
       <button type="button" v-on:click="onexport" class="btn">Excel download</button>
     </div>
   </div>
