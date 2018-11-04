@@ -9,7 +9,7 @@
 </template>
 <script>
 // import Vue from 'vue'
-// import axios from 'axios'
+import axios from 'axios'
 import XLSX from 'xlsx'
 
 export default {
@@ -17,14 +17,22 @@ export default {
   data: () => ({
     Datas: {
       'sites': [
-        {'name': '토토깃', 'url': 'https://github.com'},
-        {'name': '토토구글', 'url': 'https://google.com'},
-        {'name': '토토네버', 'url': 'https://naver.com'}
       ]
     }
   }),
   methods: {
-    onexport () {
+    async onexport () {
+      var result = await axios.post('http://soylatte.kr:3000/image/excel', {
+        some: 'data'
+      }).catch((response) => {
+        alert('연동 실패!')
+        return 0
+      })
+      result = result.data
+      for (var i = 0; result[i] != null; i++) {
+        let data = {'url' : result[i].url}
+        this.Datas.sites.push(data)
+      }
       var site = XLSX.utils.json_to_sheet(this.Datas.sites)
       var siteWS = XLSX.utils.book_new()
       XLSX.utils.book_append_sheet(siteWS, site, 'sites')
