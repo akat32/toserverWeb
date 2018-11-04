@@ -30,7 +30,7 @@ export default {
       })
       result = result.data
       for (var i = 0; result[i] != null; i++) {
-        let data = {'url' : result[i].url}
+        let data = result[i]
         this.Datas.sites.push(data)
       }
       var site = XLSX.utils.json_to_sheet(this.Datas.sites)
